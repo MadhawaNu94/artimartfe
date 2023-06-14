@@ -6,11 +6,11 @@ import * as yup from "yup";
 import { shades } from "../../theme";
 import Payment from "./Payment";
 import Shipping from "./Shipping";
-// import { loadStripe } from "@stripe/stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 
-// const stripePromise = loadStripe(
-//   "pk_test_51NIjQnKdA5EiGXmhFSTtMD8ZeK3NeEk2FsBzAnyBspTAfniaqX92QzqrdEFG0xC7U6d3XLszciLQoVekj4DFQoqC00k3xy1gMA"
-// );
+const stripePromise = loadStripe(
+  "pk_test_51NIjQnKdA5EiGXmhFSTtMD8ZeK3NeEk2FsBzAnyBspTAfniaqX92QzqrdEFG0xC7U6d3XLszciLQoVekj4DFQoqC00k3xy1gMA"
+);
 
 const Checkout = () => {
   const [activeStep, setActiveStep] = useState(0);
@@ -18,45 +18,45 @@ const Checkout = () => {
   const isFirstStep = activeStep === 0;
   const isSecondStep = activeStep === 1;
 
-  // const handleFormSubmit = async (values, actions) => {
-  //   setActiveStep(activeStep + 1);
+  const handleFormSubmit = async (values, actions) => {
+    setActiveStep(activeStep + 1);
 
-  //   // this copies the billing address onto shipping address
-  //   if (isFirstStep && values.shippingAddress.isSameAddress) {
-  //     actions.setFieldValue("shippingAddress", {
-  //       ...values.billingAddress,
-  //       isSameAddress: true,
-  //     });
-  //   }
+    // this copies the billing address onto shipping address
+    if (isFirstStep && values.shippingAddress.isSameAddress) {
+      actions.setFieldValue("shippingAddress", {
+        ...values.billingAddress,
+        isSameAddress: true,
+      });
+    }
 
-  //   if (isSecondStep) {
-  //     makePayment(values);
-  //   }
+    if (isSecondStep) {
+      makePayment(values);
+    }
 
-  //   actions.setTouched({});
-  // };
+    actions.setTouched({});
+  };
 
-  // async function makePayment(values) {
-  //   // const stripe = await stripePromise;
-  //   const requestBody = {
-  //     userName: [values.firstName, values.lastName].join(" "),
-  //     email: values.email,
-  //     products: cart.map(({ id, count }) => ({
-  //       id,
-  //       count,
-  //     })),
-  //   };
+  async function makePayment(values) {
+    const stripe = await stripePromise;
+    const requestBody = {
+      userName: [values.firstName, values.lastName].join(" "),
+      email: values.email,
+      products: cart.map(({ id, count }) => ({
+        id,
+        count,
+      })),
+    };
 
-  //   const response = await fetch("http://localhost:2000/api/orders", {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify(requestBody),
-  //   });
-  //   const session = await response.json();
-  //   // await stripe.redirectToCheckout({
-  //   //   sessionId: session.id,
-  //   // });
-  // }
+    const response = await fetch("http://localhost:2000/api/orders", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(requestBody),
+    });
+    const session = await response.json();
+    await stripe.redirectToCheckout({
+      sessionId: session.id,
+    });
+  }
 
   return (
     <Box width="80%" m="100px auto">
@@ -70,9 +70,9 @@ const Checkout = () => {
       </Stepper>
       <Box>
         <Formik
-          // onSubmit={handleFormSubmit}
-          // initialValues={initialValues}
-          // validationSchema={checkoutSchema[activeStep]}
+          onSubmit={handleFormSubmit}
+          initialValues={initialValues}
+          validationSchema={checkoutSchema[activeStep]}
         >
           {({
             values,
