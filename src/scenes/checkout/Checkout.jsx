@@ -6,7 +6,6 @@ import * as yup from "yup";
 import { shades } from "../../theme";
 import Payment from "./Payment";
 import Shipping from "./Shipping";
-
 import { loadStripe } from "@stripe/stripe-js";
 
 const stripePromise = loadStripe(
@@ -58,7 +57,6 @@ const Checkout = () => {
       sessionId: session.id,
     });
   }
-
 
   return (
     <Box width="80%" m="100px auto">
