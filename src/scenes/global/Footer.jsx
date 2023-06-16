@@ -24,10 +24,15 @@ function Footer() {
             mb="30px"
             color={shades.secondary[500]}
           >
-            ARTIMART
+            Artimart
           </Typography>
           <div>
-            We, Artimart would like to provide a reasonable, best quality produts to you.
+          Sri Lanka Handicrafts Board was established on 17th January 1983, under the National Crafts Council 
+          & allied Institutions Act No. 35 of 1982.
+          The Sri Lanka Handicrafts Board better known as “ARTIMART” is a state corporation under the Ministry of Rural Industries 
+          and Self Employment Promotion is set up to preserve and develop traditional skill of the craftsmen. 
+          The Board is dealing with nearly 3500 leading master craftsmen/entrepreneurs 
+          who are producing handicrafts item at Rural/Cottage industry level. 
           </div>
         </Box>
 
@@ -56,12 +61,12 @@ function Footer() {
             Contact Us
           </Typography>
           <Typography mb="30px">
-            National Institute of Business Management, Colombo 07
+            97 Bauddhaloka Mw, Colombo 07
           </Typography>
           <Typography mb="30px" sx={{ wordWrap: "break-word" }}>
-            Email: HDSE211P-007@student.nibm.lk
+            Email: artimart@gmail.com
           </Typography>
-          <Typography mb="30px">0768509006</Typography>
+          <Typography mb="30px">(+94)11-2 444 664</Typography>
         </Box>
       </Box>
     </Box>

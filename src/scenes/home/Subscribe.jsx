@@ -10,9 +10,9 @@ const Subscribe = () => {
       <IconButton>
         <MarkEmailReadOutlinedIcon fontSize="large" />
       </IconButton>
-      <Typography variant="h3">Subscribe To Our Page</Typography>
+      <Typography variant="h3">Subscribe To Our Newsletter</Typography>
       <Typography>
-        and receive Rs 1000 coupon for your first order when you checkout
+        and receive LKR 1000 coupon for your first order when you checkout.
       </Typography>
       <Box
         p="2px 4px"

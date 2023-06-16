@@ -2,6 +2,7 @@ import { getIn } from "formik";
 import { Box } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { useEffect } from "react";
 
 const AddressForm = ({
   type,
@@ -21,6 +22,10 @@ const AddressForm = ({
       getIn(touched, formattedName(field)) &&
         getIn(errors, formattedName(field))
     );
+
+  useEffect(() => {
+    document.title = "ARTIMART | E-Commerce";
+  });
 
   const formattedHelper = (field) =>
     getIn(touched, formattedName(field)) && getIn(errors, formattedName(field));

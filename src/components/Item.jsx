@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { IconButton, Box,Typography,useTheme,Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
@@ -15,27 +15,21 @@ const Item =({item,width})=>{
     const{
         palette:{neutral},
     }=useTheme();
-    const{category,price,name,image}=item.attributes;
-    const {
-        data:{
-            attributes:{
-                formats:{
-                    medium:{url},
-                }
+    const{category,price,productName,productImage}=item;
 
-            }
-        }
-    } =image;
+    useEffect(() => {
+        document.title = "ARTIMART | E-Commerce";
+    });
 
     return(
         <Box width={width}>
             <Box position="relative" onMouseOver={()=> setIsHovered(true)} onMouseOut={()=> setIsHovered(false)}>
                 <img 
-                alt={item.name}
+                alt={item.productName}
                 width="300px"
                 height="400px"
-                src={`http://localhost:1337${url}`}
-                onClick={()=> navigate(`/item/${item.id}`)}
+                src={productImage}
+                onClick={()=> navigate(`/item/${item._id}`)}
                 style={{cursor:'pointer'}}/>
                 <Box
                 display={isHovered ? "blocked":'none'}
@@ -68,8 +62,8 @@ const Item =({item,width})=>{
             <Box mt="3px"> 
                 <Typography variant="subtitle2" color={neutral.dark}>
                 {category.replace(/([A-Z])/g,"$1").replace(/^./,(str)=> str.toUpperCase())}</Typography>
-                <Typography>{name}</Typography>
-                <Typography fontWeight="bold">${price}</Typography>
+                <Typography>{productName}</Typography>
+                <Typography fontWeight="bold">LKR {price}</Typography>
             </Box>
         </Box>
     )

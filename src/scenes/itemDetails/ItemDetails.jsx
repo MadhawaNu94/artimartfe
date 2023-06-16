@@ -25,24 +25,25 @@ const ItemDetails = () => {
 
   async function getItem() {
     const item = await fetch(
-      `http://localhost:2000/api/items/${itemId}?populate=image`,
+      `https://artimart-api.up.railway.app/api/products/find/${itemId}`,
       {
         method: "GET",
       }
     );
     const itemJson = await item.json();
-    setItem(itemJson.data);
+    setItem(itemJson);
   }
 
   async function getItems() {
     const items = await fetch(
-      `http://localhost:2000/api/items?populate=image`,
+      "https://artimart-api.up.railway.app/api/products/",
       {
         method: "GET",
       }
     );
     const itemsJson = await items.json();
-    setItems(itemsJson.data);
+    console.log(itemsJson)
+    setItems(itemsJson);
   }
 
   useEffect(() => {
@@ -56,10 +57,10 @@ const ItemDetails = () => {
         {/* IMAGES */}
         <Box flex="1 1 40%" mb="40px">
           <img
-            alt={item?.name}
+            alt={item?.productName}
             width="100%"
             height="100%"
-            src={`http://localhost:2000${item?.attributes?.image?.data?.attributes?.formats?.medium?.url}`}
+            src={item?.productImage}
             style={{ objectFit: "contain" }}
           />
         </Box>
@@ -72,10 +73,10 @@ const ItemDetails = () => {
           </Box>
 
           <Box m="65px 0 25px 0">
-            <Typography variant="h3">{item?.attributes?.name}</Typography>
-            <Typography>${item?.attributes?.price}</Typography>
+            <Typography variant="h3">{item?.productName}</Typography>
+            <Typography>LKR {item?.price}</Typography>
             <Typography sx={{ mt: "20px" }}>
-              {item?.attributes?.longDescription}
+              {item?.description}
             </Typography>
           </Box>
 
@@ -113,7 +114,7 @@ const ItemDetails = () => {
               <FavoriteBorderOutlinedIcon />
               <Typography sx={{ ml: "5px" }}>ADD TO WISHLIST</Typography>
             </Box>
-            <Typography>CATEGORIES: {item?.attributes?.category}</Typography>
+            <Typography>CATEGORIES: {item?.category}</Typography>
           </Box>
         </Box>
       </Box>
@@ -127,7 +128,7 @@ const ItemDetails = () => {
       </Box>
       <Box display="flex" flexWrap="wrap" gap="15px">
         {value === "description" && (
-          <div>{item?.attributes?.longDescription}</div>
+          <div>{item?.description}</div>
         )}
         {value === "reviews" && <div>reviews</div>}
       </Box>
@@ -145,7 +146,7 @@ const ItemDetails = () => {
           justifyContent="space-between"
         >
           {items.slice(0, 4).map((item, i) => (
-            <Item key={`${item.name}-${i}`} item={item} />
+            <Item key={`${item.productName}-${i}`} item={item} />
           ))}
         </Box>
       </Box>
