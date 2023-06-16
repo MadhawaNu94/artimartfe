@@ -20,26 +20,26 @@ const ShoppingList = () => {
 
   async function getItems() {
     const items = await fetch(
-      "http://localhost:2000/api/items?populate=image",
+      "https://artimart-api.up.railway.app/api/products/",
       { method: "GET" }
     );
     const itemsJson = await items.json();
-    dispatch(setItems(itemsJson.data));
+    dispatch(setItems(itemsJson));
   }
 
   useEffect(() => {
     getItems();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const topRatedItems = items.filter(
-    (item) => item.attributes.category === "topRated"
-  );
-  const newArrivalsItems = items.filter(
-    (item) => item.attributes.category === "newArrivals"
-  );
-  const bestSellersItems = items.filter(
-    (item) => item.attributes.category === "bestSellers"
-  );
+  const topRatedItems = items.filter((item) => {
+    return item.category == "topRated"
+  })
+  const newArrivalsItems = items.filter((item) => {
+    return item.category == "newArrivals"
+  })
+  const bestSellersItems = items.filter((item) => {
+    return item.category == "bestSellers"
+  })
 
   return (
     <Box width="80%" margin="80px auto">
@@ -75,19 +75,19 @@ const ShoppingList = () => {
       >
         {value === "all" &&
           items.map((item) => (
-            <Item item={item} key={`${item.name}-${item.id}`} />
+            <Item item={item} key={`${item.productName}-${item._id}`} />
           ))}
         {value === "newArrivals" &&
           newArrivalsItems.map((item) => (
-            <Item item={item} key={`${item.name}-${item.id}`} />
+            <Item item={item} key={`${item.productName}-${item._id}`} />
           ))}
         {value === "bestSellers" &&
           bestSellersItems.map((item) => (
-            <Item item={item} key={`${item.name}-${item.id}`} />
+            <Item item={item} key={`${item.productName}-${item._id}`} />
           ))}
         {value === "topRated" &&
           topRatedItems.map((item) => (
-            <Item item={item} key={`${item.name}-${item.id}`} />
+            <Item item={item} key={`${item.productName}-${item._id}`} />
           ))}
       </Box>
     </Box>
