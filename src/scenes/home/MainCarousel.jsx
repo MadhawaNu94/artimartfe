@@ -68,7 +68,7 @@ return (
                         backgroundAttachment:"fixed"
                     }}
                 />
-                <Box 
+               /* <Box 
                 color="white"
                 padding="20px"
                 borderRadius="1px"
@@ -82,13 +82,13 @@ return (
                 maxWidth={isNonMobile ? undefined:"240px"}
 
                 >
-                    <Typography color={shades.secondary[200]}>--NEW ITEMS</Typography>
-                    <Typography variant="h1">Poson Sales</Typography>
+                    <Typography color={shades.secondary[200]}></Typography>
+                    <Typography variant="h1"></Typography>
                     <Typography
                         fontWeight="bold"
                         color={shades.secondary[300]}
                         sx={{textDecoration:"underline"}}
-                        >Discover More</Typography>
+                        ></Typography>*/
 
                 </Box>
             </Box>

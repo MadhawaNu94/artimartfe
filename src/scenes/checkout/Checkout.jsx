@@ -6,11 +6,12 @@ import * as yup from "yup";
 import { shades } from "../../theme";
 import Payment from "./Payment";
 import Shipping from "./Shipping";
-// import { loadStripe } from "@stripe/stripe-js";
 
-// const stripePromise = loadStripe(
-//   "pk_test_51NIjQnKdA5EiGXmhFSTtMD8ZeK3NeEk2FsBzAnyBspTAfniaqX92QzqrdEFG0xC7U6d3XLszciLQoVekj4DFQoqC00k3xy1gMA"
-// );
+import { loadStripe } from "@stripe/stripe-js";
+
+const stripePromise = loadStripe(
+  "pk_test_51NJgKGSA0CRsNvkrEtTyB3XEUmWB0L0T8oqSKBFxBPdJH2dPWPuiPwVd1OkN8AG4SIhvrsvNdKUQfM6YOhaVL4wg00OATSdm6Q"
+);
 
 const Checkout = () => {
   const [activeStep, setActiveStep] = useState(0);
@@ -36,27 +37,28 @@ const Checkout = () => {
   //   actions.setTouched({});
   // };
 
-  // async function makePayment(values) {
-  //   // const stripe = await stripePromise;
-  //   const requestBody = {
-  //     userName: [values.firstName, values.lastName].join(" "),
-  //     email: values.email,
-  //     products: cart.map(({ id, count }) => ({
-  //       id,
-  //       count,
-  //     })),
-  //   };
+  async function makePayment(values) {
+    const stripe = await stripePromise;
+    const requestBody = {
+      userName: [values.firstName, values.lastName].join(" "),
+      email: values.email,
+      products: cart.map(({ id, count }) => ({
+        id,
+        count,
+      })),
+    };
 
-  //   const response = await fetch("http://localhost:2000/api/orders", {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify(requestBody),
-  //   });
-  //   const session = await response.json();
-  //   // await stripe.redirectToCheckout({
-  //   //   sessionId: session.id,
-  //   // });
-  // }
+    const response = await fetch("http://localhost:2000/api/orders", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(requestBody),
+    });
+    const session = await response.json();
+    await stripe.redirectToCheckout({
+      sessionId: session.id,
+    });
+  }
+
 
   return (
     <Box width="80%" m="100px auto">
