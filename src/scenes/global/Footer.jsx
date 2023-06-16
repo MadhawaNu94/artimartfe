@@ -24,13 +24,10 @@ function Footer() {
             mb="30px"
             color={shades.secondary[500]}
           >
-            ECOMMER
+            ARTIMART
           </Typography>
           <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat
+            We, Artimart would like to provide a reasonable, best quality produts to you.
           </div>
         </Box>
 
@@ -59,12 +56,12 @@ function Footer() {
             Contact Us
           </Typography>
           <Typography mb="30px">
-            50 north Whatever Blvd, Washington, DC 10501
+            National Institute of Business Management, Colombo 07
           </Typography>
           <Typography mb="30px" sx={{ wordWrap: "break-word" }}>
-            Email: mredwardroh@gmail.com
+            Email: HDSE211P-007@student.nibm.lk
           </Typography>
-          <Typography mb="30px">(222)333-4444</Typography>
+          <Typography mb="30px">0768509006</Typography>
         </Box>
       </Box>
     </Box>
