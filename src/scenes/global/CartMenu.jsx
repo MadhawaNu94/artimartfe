@@ -95,7 +95,7 @@ const CartMenu=()=>{
                                                 </IconButton>
                                             </Box>
 
-                                            <Typography fontWeight="bold">Rs {item.attributes.price}</Typography>
+                                            <Typography fontWeight="bold">LKR {item.price}</Typography>
 
                                         </FlexBox>
                                         
@@ -109,7 +109,7 @@ const CartMenu=()=>{
                     <Box m="20px 0">
                         <FlexBox m="20px 0">
                             <Typography fontWeight="bold">SUBTOTAL</Typography>
-                            <Typography fontWeight="bold">Rs {totalPrice}</Typography>
+                            <Typography fontWeight="bold">LKR {totalPrice}</Typography>
                         </FlexBox>
                         <Button sx={{
                             backgroundColor:shades.primary[400],
